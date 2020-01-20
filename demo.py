@@ -178,7 +178,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         if key == 27:  # esc
             return
     df = pd.DataFrame(csv_dict)
-    df.to_csv('/content/output_sibal.csv')
+    df.to_csv('/content/output_taxi.csv')
 
 
 if __name__ == '__main__':
