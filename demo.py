@@ -152,8 +152,8 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):#, filename):
         print('fps=', fps)
         ttt = time.time()
         
-        str = "FPS : %0.2f" % fps
-        cv2.putText(img, str, (0, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0))
+        str_ = "FPS : %0.2f" % fps
+        cv2.putText(img, str_, (0, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0))
 #         cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
 #         cv2_imshow(img)
         cv2.imwrite('output/'+str(idxx)+'.png', img)
