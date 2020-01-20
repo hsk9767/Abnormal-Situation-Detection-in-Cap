@@ -107,8 +107,8 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):#, filename):
     previous_poses = []
     c=0
     ttt=0
+    idxx = 0
     for img in image_provider:
-        idxx = 0
         t5=time.time()
         orig_img = img.copy()
         heatmaps, pafs, scale, pad = infer_fast(net, img, height_size, stride, upsample_ratio, cpu)
