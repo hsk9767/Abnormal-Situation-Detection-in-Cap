@@ -170,7 +170,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         #         cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
         #         cv2_imshow(img)
 
-        cv2.imwrite('output_sibal/' + str(idxx) + '.png', img)
+        cv2.imwrite('output_taxi/' + str(idxx) + '.png', img)
         idxx += 1
 
         key = cv2.waitKey(1)
