@@ -11,6 +11,8 @@ from modules.load_state import load_state
 from modules.pose import Pose, propagate_ids
 from val import normalize, pad_width
 
+from google.colab.patches import cv2_imshow
+import cv2
 
 class ImageReader(object):
     def __init__(self, file_names):
