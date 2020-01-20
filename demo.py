@@ -106,6 +106,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):#, filename):
     c=0
     ttt=0
     for img in image_provider:
+        idxx = 0
         t5=time.time()
         orig_img = img.copy()
         heatmaps, pafs, scale, pad = infer_fast(net, img, height_size, stride, upsample_ratio, cpu)
@@ -151,8 +152,9 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):#, filename):
         
         str = "FPS : %0.2f" % fps
         cv2.putText(img, str, (0, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0))
-        cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
-        # cv2.imwrite('PAF_'+filename[image_provider.idx -1], img)
+        cv2_imshow('Lightweight Human Pose Estimation Python Demo', img)
+        cv2.imwrite('PAF_'+str(idxx), img)
+        idxx+=1
 
         key = cv2.waitKey(1)
 
