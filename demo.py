@@ -154,14 +154,15 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
             driver_find_flag = find_class.find_driver(current_poses, orig_img)
         else:
             is_driver_flag, driver_index = find_class.is_driver(current_poses, orig_img)
+            
 
         ##찾았으면, id 를 driver 로
-        if is_driver_flag:
-            current_poses[driver_index].id = 'DRIVER'
 
         if track_ids == True:  ##Track Poses
             propagate_ids(previous_poses, current_poses)
             previous_poses = current_poses
+            if is_driver_flag == True:
+                current_poses[driver_index].id = 'DRIVER'
             for pose in current_poses:
                 cv2.rectangle(img, (pose.bbox[0], pose.bbox[1]),
                               (pose.bbox[0] + pose.bbox[2], pose.bbox[1] + pose.bbox[3]), (0, 255, 0))
