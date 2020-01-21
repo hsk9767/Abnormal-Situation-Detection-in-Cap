@@ -160,13 +160,15 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         if track_ids == True:  ##Track Poses
             propagate_ids(previous_poses, current_poses)
             previous_poses = current_poses
-            if is_driver_flag == True:
-                current_poses[driver_index].id = 'DRIVER'
+            index_counter = 0
             for pose in current_poses:
                 cv2.rectangle(img, (pose.bbox[0], pose.bbox[1]),
                               (pose.bbox[0] + pose.bbox[2], pose.bbox[1] + pose.bbox[3]), (0, 255, 0))
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
+                if is_driver_flag and index_counter == driver_index:
+                    cv2.putText(img, 'DRIVER', (pose.bbox[0] + 100, pose.bbox[1] - 16), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255))
+                index_counter += 1
 
                 print("idxx : ", idxx)
                 print("ID : ", pose.id)
