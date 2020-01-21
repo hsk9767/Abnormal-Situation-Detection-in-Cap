@@ -6,11 +6,13 @@ class Find_assault():
         self.eyes_nose_center_avg = 0
         self.eyes_nose_dist_avg = 0
         self.eyes_nose_dist_mul = 1
+        self.area_avg = 0
         self.find_driver_count_limit = 500
 
     def get_eyes_nose_dist_center(self, r_eye, l_eye, nose):
         dist = abs(r_eye[0] - nose[0]) + abs(r_eye[1] - nose[1]) + abs(l_eye[0] - nose[0]) + abs(l_eye[1] - nose[1])
         return self.eyes_nose_dist_mul * dist, (np.array(r_eye) + np.array(l_eye) + np.array(nose))/3
+
 
     def find_driver(self, current_poses, img_shape):
         print("Driver_Count : ", self.find_driver_count)
