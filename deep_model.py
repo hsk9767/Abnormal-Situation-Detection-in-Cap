@@ -1,24 +1,3 @@
-model.py
-김
-유형
-텍스트
-크기
-3KB (3,314바이트)
-사용된 저장용량
-3KB (3,314바이트)
-위치
-deep
-소유자
-나
-수정한 날짜
-2019. 11. 25., 나
-열어본 날짜
-오후 10:31, 나
-2019. 11. 25.에 Google Drive File Stream
-(으)로
-작성됨
-설명 추가
-뷰어가 다운로드할 수 있음
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
