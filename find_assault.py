@@ -44,9 +44,9 @@ class Find_assault():
 
         ##feature 뽑기
         tl_x, tl_y, width, height = current_poses[most_right_index].bbox
-        print("img shape : ", img.shape)
+        #print("img shape : ", img.shape)
         feature = self.feature_extractor(np.expand_dims(img[tl_y : tl_y + height,tl_x : tl_x + width, : ], 0))
-        print("Feature Shape : ", feature.shape)
+        #print("Feature Shape : ", feature.shape)
 
          ##첫 번째라면 지수이동평균을 측정 값을 주고 첫 번째가 아니라면 지수이동평균에 수식 대입
         if self.find_driver_count == 0:
