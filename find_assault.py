@@ -91,7 +91,6 @@ class Find_assault():
 
         ##우선, center 좌표가 얼마 움직이지 않았으면 운전자가 그대로 있다고 판다
         if dist_from_center_avg < self.eyes_nose_dist_avg * 2 :##check 할 때에는 좀 더 넓은 오차범위를 둠.
-            current_poses[most_right_index].id = 'DRIVER'
             self.weird_state_count = 0
             return True, most_right_index
         elif area < 0.5 * self.area_avg:
@@ -105,6 +104,5 @@ class Find_assault():
                 self.weird_state_count += 1
                 return False, -1
             else:
-                current_poses[most_right_index].id = 'DRIVER'
                 self.weird_state_count = 0
                 return True, most_right_index
