@@ -12,6 +12,7 @@ from modules.load_state import load_state
 from modules.pose import Pose, propagate_ids
 from modules.find_assault import Find_assault
 from val import normalize, pad_width
+from deep.feature_extractor import Extractor
 
 from google.colab.patches import cv2_imshow
 import cv2
@@ -113,7 +114,9 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
     idxx = 0
     csv_dict = {'frame_number' : [], 'center_x' : [], 'center_y' : [], 'area' : [], 'id' : []}
     driver_find_flag = False
-    find_class = Find_assault()
+    extractor = Extractor('default_checkpoints/ckpt.t7', True)
+    find_class = Find_assault(extractor)
+    
 
     for img in image_provider:
         t5 = time.time()
