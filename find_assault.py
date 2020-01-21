@@ -81,7 +81,7 @@ class Find_assault():
             most_right_index = np.argmax(tr_x_arr)
         else:
             self.weird_state_count += 1
-            return False
+            return False, -1
 
         _, eyes_nose_center = self.get_eyes_nose_dist_center(current_poses[most_right_index].keypoints[-4],
                                                              current_poses[most_right_index].keypoints[-3],
@@ -93,18 +93,18 @@ class Find_assault():
         if dist_from_center_avg < self.eyes_nose_dist_avg * 2 :##check 할 때에는 좀 더 넓은 오차범위를 둠.
             current_poses[most_right_index].id = 'DRIVER'
             self.weird_state_count = 0
-            return True
+            return True, most_right_index
         elif area < 0.5 * self.area_avg:
             self.weird_state_count += 1
-            return False
+            return False, -1
         else:
             tl_x, tl_y, width, height = current_poses[most_right_index].bbox
             feature = self.feature_extractor(img[tl_y: tl_y + height, tl_x: tl_x + width, :])
             cos_dist_from_avg_feature = self.get_cosine_distance(feature, self.feature_avg)
             if cos_dist_from_avg_feature > self.cos_dist_threshold : ##차이가 많이 나는 경우
                 self.weird_state_count += 1
-                return False
+                return False, -1
             else:
                 current_poses[most_right_index].id = 'DRIVER'
                 self.weird_state_count = 0
-                return True
+                return True, most_right_index
