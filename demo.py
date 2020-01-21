@@ -10,6 +10,7 @@ from models.with_mobilenet import PoseEstimationWithMobileNet
 from modules.keypoints import extract_keypoints, group_keypoints
 from modules.load_state import load_state
 from modules.pose import Pose, propagate_ids
+from modules.find_assault import Find_assault
 from val import normalize, pad_width
 
 from google.colab.patches import cv2_imshow
@@ -110,7 +111,10 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
     c = 0
     ttt = 0
     idxx = 0
-    csv_dict = {'frame_number' : [], 'center_x' : [], 'center_y' : [], 'area' : []}
+    csv_dict = {'frame_number' : [], 'center_x' : [], 'center_y' : [], 'area' : [], 'id' : []}
+    driver_find_flag = False
+    find_class = Find_assault()
+
     for img in image_provider:
         t5 = time.time()
         orig_img = img.copy()
@@ -140,8 +144,13 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
             pose = Pose(pose_keypoints, pose_entries[n][18])
             current_poses.append(pose)
             pose.draw(img)
-
         img = cv2.addWeighted(orig_img, 0.6, img, 0.4, 0)
+
+        #운전자를 못 찾았으면 find_driver 에 들어감.
+        if driver_find_flag is False:
+            driver_find_flag = find_class.find_driver(current_poses, img.shape)
+
+
         if track_ids == True:  ##Track Poses
             propagate_ids(previous_poses, current_poses)
             previous_poses = current_poses
@@ -151,13 +160,11 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
 
-
                 csv_dict['frame_number'].append(idxx)
                 csv_dict['center_x'].append(pose.bbox[0] + pose.bbox[2]/2)
                 csv_dict['center_y'].append(pose.bbox[1] + pose.bbox[3]/2)
                 csv_dict['area'].append(pose.bbox[2] * pose.bbox[3])
-
-
+                csv_dict['id'].append(pose.id)
 
         tt = time.time()
 
@@ -170,7 +177,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         #         cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
         #         cv2_imshow(img)
 
-        cv2.imwrite('output_two/' + str(idxx) + '.png', img)
+        cv2.imwrite('output_sibal/' + str(idxx) + '.png', img)
         idxx += 1
 
         key = cv2.waitKey(1)
@@ -178,7 +185,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         if key == 27:  # esc
             return
     df = pd.DataFrame(csv_dict)
-    df.to_csv('/content/output_two.csv')
+    df.to_csv('/content/output.csv')
 
 
 if __name__ == '__main__':
