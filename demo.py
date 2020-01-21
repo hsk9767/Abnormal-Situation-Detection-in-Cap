@@ -151,7 +151,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
 
         #운전자를 못 찾았으면 find_driver 에 들어감.
         if driver_find_flag is False:
-            driver_find_flag = find_class.find_driver(current_poses, img.shape)
+            driver_find_flag = find_class.find_driver(current_poses, orig_img)
 
 
         if track_ids == True:  ##Track Poses
