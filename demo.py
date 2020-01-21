@@ -112,11 +112,11 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
     c = 0
     ttt = 0
     idxx = 0
-    csv_dict = {'frame_number' : [], 'center_x' : [], 'center_y' : [], 'area' : [], 'id' : []}
+    csv_dict = {'frame_number': [], 'center_x': [], 'center_y': [], 'area': [], 'id': []}
     driver_find_flag = False
+    is_driver_flag = False
     extractor = Extractor('default_checkpoints/ckpt.t7', True)
     find_class = Find_assault(extractor)
-    
 
     for img in image_provider:
         t5 = time.time()
@@ -149,10 +149,15 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
             pose.draw(img)
         img = cv2.addWeighted(orig_img, 0.6, img, 0.4, 0)
 
-        #운전자를 못 찾았으면 find_driver 에 들어감.
+        # 운전자를 못 찾았으면 find_driver 에 들어감.
         if driver_find_flag is False:
             driver_find_flag = find_class.find_driver(current_poses, orig_img)
+        else:
+            is_driver_flag, driver_index = find_class.is_driver(current_poses, orig_img)
 
+        ##찾았으면, id 를 driver 로
+        if is_driver_flag:
+            current_poses[driver_index].id = 'DRIVER'
 
         if track_ids == True:  ##Track Poses
             propagate_ids(previous_poses, current_poses)
@@ -162,10 +167,10 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
                               (pose.bbox[0] + pose.bbox[2], pose.bbox[1] + pose.bbox[3]), (0, 255, 0))
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
-                print("Track id" , pose.id)
+
                 csv_dict['frame_number'].append(idxx)
-                csv_dict['center_x'].append(pose.bbox[0] + pose.bbox[2]/2)
-                csv_dict['center_y'].append(pose.bbox[1] + pose.bbox[3]/2)
+                csv_dict['center_x'].append(pose.bbox[0] + pose.bbox[2] / 2)
+                csv_dict['center_y'].append(pose.bbox[1] + pose.bbox[3] / 2)
                 csv_dict['area'].append(pose.bbox[2] * pose.bbox[3])
                 csv_dict['id'].append(pose.id)
 
