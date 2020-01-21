@@ -114,11 +114,11 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
     idxx = 0
     csv_dict = {'frame_number': [], 'center_x': [], 'center_y': [], 'area': [], 'id': []}
     driver_find_flag = False
-    is_driver_flag = False
     extractor = Extractor('default_checkpoints/ckpt.t7', True)
     find_class = Find_assault(extractor)
 
     for img in image_provider:
+        is_driver_flag = False
         t5 = time.time()
         orig_img = img.copy()
         heatmaps, pafs, scale, pad = infer_fast(net, img, height_size, stride, upsample_ratio, cpu)
@@ -154,7 +154,6 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
             driver_find_flag = find_class.find_driver(current_poses, orig_img)
         else:
             is_driver_flag, driver_index = find_class.is_driver(current_poses, orig_img)
-            
 
         ##찾았으면, id 를 driver 로
 
@@ -168,7 +167,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
                               (pose.bbox[0] + pose.bbox[2], pose.bbox[1] + pose.bbox[3]), (0, 255, 0))
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
-                
+
                 print("idxx : ", idxx)
                 print("ID : ", pose.id)
                 csv_dict['frame_number'].append(idxx)
