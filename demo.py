@@ -162,7 +162,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
                               (pose.bbox[0] + pose.bbox[2], pose.bbox[1] + pose.bbox[3]), (0, 255, 0))
                 cv2.putText(img, 'id: {}'.format(pose.id), (pose.bbox[0], pose.bbox[1] - 16),
                             cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255))
-
+                print("Track id" , pose.id)
                 csv_dict['frame_number'].append(idxx)
                 csv_dict['center_x'].append(pose.bbox[0] + pose.bbox[2]/2)
                 csv_dict['center_y'].append(pose.bbox[1] + pose.bbox[3]/2)
