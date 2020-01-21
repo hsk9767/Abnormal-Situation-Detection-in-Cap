@@ -13,6 +13,7 @@ class Find_assault():
         return self.eyes_nose_dist_mul * dist, (np.array(r_eye) + np.array(l_eye) + np.array(nose))/3
 
     def find_driver(self, current_poses, img_shape):
+        print("Driver_Count : ", self.find_driver_count)
         ##img bbox 중 가장 오른쪽 x 좌표들만을 다 모아 놓는 것.
         tr_x_list = [ (pose.bbox[0] + pose.bbox[2]) for pose in current_poses ]
         tr_x_arr = np.array([x for x in tr_x_list if x > 2*img_shape[0]/3])
