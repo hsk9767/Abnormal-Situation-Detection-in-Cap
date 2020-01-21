@@ -44,6 +44,7 @@ class Find_assault():
 
         ##feature 뽑기
         tl_x, tl_y, width, height = current_poses[most_right_index].bbox
+        print("img shape : ", img.shape)
         feature = self.feature_extractor(img[tl_y : tl_y + height,tl_x : tl_x + width, : ])
         print("Feature Shape : ", feature.shape)
 
