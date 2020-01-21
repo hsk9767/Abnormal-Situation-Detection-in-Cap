@@ -1,7 +1,8 @@
 import numpy as np
 
 class Find_assault():
-    def __init__(self):
+    def __init__(self, Extractor):
+        self.feature_extractor = Extractor
         self.find_driver_count = 0
         self.eyes_nose_center_avg = 0
         self.eyes_nose_dist_avg = 0
