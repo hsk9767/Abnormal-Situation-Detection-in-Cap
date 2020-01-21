@@ -98,7 +98,7 @@ class Find_assault():
             return False, -1
         else:
             tl_x, tl_y, width, height = current_poses[most_right_index].bbox
-            feature = self.feature_extractor(img[tl_y: tl_y + height, tl_x: tl_x + width, :])
+            feature = self.feature_extractor(np.expand_dims(img[tl_y: tl_y + height, tl_x: tl_x + width, :], 0))
             cos_dist_from_avg_feature = self.get_cosine_distance(feature, self.feature_avg)
             if cos_dist_from_avg_feature > self.cos_dist_threshold : ##차이가 많이 나는 경우
                 self.weird_state_count += 1
