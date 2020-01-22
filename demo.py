@@ -189,7 +189,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         #         cv2.imshow('Lightweight Human Pose Estimation Python Demo', img)
         #         cv2_imshow(img)
 
-        cv2.imwrite('output/' + str(idxx) + '.png', img)
+        cv2.imwrite('output_sibal_2/' + str(idxx) + '.png', img)
         idxx += 1
 
         key = cv2.waitKey(1)
@@ -197,7 +197,7 @@ def run_demo(net, image_provider, height_size, cpu, track_ids):  # , filename):
         if key == 27:  # esc
             return
     df = pd.DataFrame(csv_dict)
-    df.to_csv('/content/output.csv')
+    df.to_csv('/content/output_sibal_2.csv')
 
 
 if __name__ == '__main__':
