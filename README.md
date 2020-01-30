@@ -12,3 +12,5 @@
  
  
  #### 1. Model Download   
+
+  Download [THIS](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing) to _./default_checkpoints_
