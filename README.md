@@ -11,10 +11,14 @@
  
  
 
-Model Download [THIS](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing)
+Model Download : [Google Drive](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing)
   
     Download two files in shared google drive to **./default_checkpoints**
 
 Run Demo
 
-    run demo.py with config 
+    run demo.py --video path/to/video(image) --checkpoint-path default_checkpoints/checkpoint_iter_147000.pth 
+    
+    You can use --video cam device number and set --save-path to save output images.
+    
+    
