@@ -18,6 +18,8 @@ Download Model : [Google Drive](https://drive.google.com/drive/folders/16IkXWthj
 Run Demo
 
     run demo.py --video path/to/video(image) --checkpoint-path default_checkpoints/checkpoint_iter_147000.pth 
-    You can use --video cam device number and set --save-path to save output images.
+    For the --video argument, you can use cam device number for like web cam. 
+    To save every processed images, you can set --save-path keyword. 
+    It will save images with **frame_number(0~).png**
     
     
