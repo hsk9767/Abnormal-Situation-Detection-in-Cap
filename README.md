@@ -10,6 +10,10 @@
  ## 2. How to implement 
  
  
+Clone
+
+    !git clone https://github.com/hsk9767/Abnormal-Situation-Detection-in-Cap.git
+
 
 Download Model : [Google Drive](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing)
   
