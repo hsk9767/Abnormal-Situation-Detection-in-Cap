@@ -10,8 +10,11 @@
  ## 2. How to implement 
  
  
- 
-     1.  Model Download
- 
- 
-Download [THIS](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing) to **./default_checkpoints**
+
+Model Download
+  
+    Download [THIS](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing) to **./default_checkpoints**
+
+Run Demo
+
+    run demo.py with config 
