@@ -11,7 +11,7 @@
  
  
 
-Model Download : [Google Drive](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing)
+Download Model : [Google Drive](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing)
   
     Download two files in shared google drive to **./default_checkpoints**
 
