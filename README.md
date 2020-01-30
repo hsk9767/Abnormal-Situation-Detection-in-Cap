@@ -11,9 +11,9 @@
  
  
 
-Model Download
+Model Download [THIS](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing)
   
-    Download [THIS](https://drive.google.com/drive/folders/16IkXWthjqXp0S5wZeGFwT2IhTFuqSgyU?usp=sharing) to **./default_checkpoints**
+    Download two files in shared google drive to **./default_checkpoints**
 
 Run Demo
 
