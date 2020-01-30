@@ -20,6 +20,6 @@ Run Demo
     run demo.py --video path/to/video(image) --checkpoint-path default_checkpoints/checkpoint_iter_147000.pth 
     For the --video argument, you can use cam device number for like web cam. 
     To save every processed images, you can set --save-path keyword. 
-    It will save images with **frame_number(0~).png**
+    It will save images with frame_number(from 0).png
     
     
